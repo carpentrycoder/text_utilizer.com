@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class TrevelloConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'trevello'
+    name = 'pranav_interior'

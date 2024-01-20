@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
-    path('',include('trevello.urls')),
+    path('',include('pranav_interior.urls')),
     path('admin/', admin.site.urls),
 ]
  
