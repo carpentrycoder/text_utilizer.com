@@ -1,5 +1,4 @@
-#I created this file
-from django.http import HttpResponse
+# I created this file
 from django.shortcuts import render
 
 # let's learn to lying pipeline
@@ -13,23 +12,25 @@ space_remover_link = "http://127.0.0.1:8000/spaceremover"
 
 
 def index(request):
-    return render(request,'index.html')
+    return render(request, 'index.html')
+
 
 def analyze(request):
-    djtxt = print(request.GET.get('text','default'))
-    removepunc = print(request.GET.get('removepunc','default'))
+    djtxt = request.GET.get('text', 'default')
+    removepunc = request.GET.get('removepunc', 'off')  # Default value is 'off' if checkbox not checked
     print(removepunc)
     print(djtxt)
-    return HttpResponse(f"removepunc <a href={link}>Home</a>")
 
-# def capatilazed(request):
-#     return HttpResponse(f"capatilazed <a href={link}>Home</a>")
-#
-# def newlinermvr(request):
-#     return HttpResponse(f"newlinermvr <a href={link}>Home</a>")
-#
-# def spaceremover(request):
-#     return HttpResponse(f"spaceremover <a href={link}>Home</a>")
-#
-# def charcounter(request):
-#     return HttpResponse(f"charcounter <a href={link}>Home</a>")
+    if removepunc == 'on':  # Check if checkbox is checked
+        punctuation_list = '''!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~'''
+        analyzer = ""
+        for char in djtxt:
+            if char not in punctuation_list:
+                analyzer = analyzer + char
+        params = {'purpose': 'Remove Punctuation', 'analyzed_txt': analyzer}
+    else:
+        params = {'purpose': 'No Operation Selected', 'analyzed_txt': djtxt}
+
+    return render(request, 'analyze.html', params)
+
+
