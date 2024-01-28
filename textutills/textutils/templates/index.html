@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:background-color="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Text-Utilizer.com</title>
+    <title>Text-Utilizer</title>
+    <style>
+
+        body {
+            background-color:#6ad8fc; /* Default color, you can change it */
+            color: #333; /* Default text color */
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background-color: #6ad8fc;
+            color: #333;
+        }
+
+    </style>
 </head>
 <body>
 <h1 align="center">Welcome to text analyzer</h1>
 <h2 align="center">Enter your text below</h2>
-<form action='analyze',method ='get'>
-    <textarea name ='text' data-gramm="false" wt-ignore-input="true" style="width: 1322px; height: 115px; font-size: 25px;"></textarea>
-     <input type="checkbox" name="removepunc">Remove Punctuations</input><br>
-     <input type="checkbox" name="UPPERCASE">UPPERCASE</input><br>
-     <input type="checkbox" name="new_line_remover">new_line_remover</input><br>
+<form action='analyze', method='get'>
+    <textarea name='text' data-gramm="false" wt-ignore-input="true" style="width: 1322px; height: 115px; font-size: 25px;"></textarea>
+    <br>
+    <input type="checkbox" name="removepunc" style="font-size: 26px;">Remove Punctuations</input><br>
+    <input type="checkbox" name="UPPERCASE" style="font-size: 26px;">UPPERCASE</input><br>
+    <input type="checkbox" name="new_line_remover" style="font-size: 26px;">New Line Remover</input><br>
+    <input type="checkbox" name="extra_space_remover" style="font-size: 26px;">Extra Space Remover</input><br>
+    <input type="checkbox" name="Character_Count" style="font-size: 26px;">Character Count</input><br>
     <button type="SUBMIT">analyze text</button>
+    <br>
+    <!-- Radio buttons for selecting mode -->
+    <label><input type="radio" name="mode" value="light" checked>Light Mode</label>
+    <label><input type="radio" name="mode" value="dark">Dark Mode</label>
+    <br><br>
 </form>
+<script>
+    // JavaScript to toggle between light and dark mode
+    document.querySelectorAll('input[type="radio"][name="mode"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            document.body.classList.toggle('light-mode', this.value === 'light');
+            document.body.classList.toggle('dark-mode', this.value === 'dark');
+        });
+    });
+</script>
 </body>
 </html>
