@@ -1,55 +1,107 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:background-color="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Text-Utilizer</title>
-    <style>
+  </head>
+  <body style="background-color: #b9cded;">
 
-        body {
-            background-color:#6ad8fc; /* Default color, you can change it */
-            color: #333; /* Default text color */
-        }
+  <style>
+    .btn.btn-outline-success {
+        color: white; /* text color */
+        background-color: #0b2b63; /* blue color */
+        border-color: #007bff; /* blue color */
+    }
 
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
+    .btn.btn-outline-success:hover {
+        color: #ffffff; /* text color on hover */
+        background-color: #0056b3; /* darker blue color on hover */
+        border-color: #0056b3; /* darker blue color on hover */
+    }
+</style>
 
-        /* Light mode styles */
-        body.light-mode {
-            background-color: #6ad8fc;
-            color: #333;
-        }
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Text Utilizer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+      <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
 
-    </style>
-</head>
-<body>
-<h1 align="center">Welcome to text analyzer</h1>
-<h2 align="center">Enter your text below</h2>
-<form action='analyze', method='get'>
-    <textarea name='text' data-gramm="false" wt-ignore-input="true" style="width: 1322px; height: 115px; font-size: 25px;"></textarea>
-    <br>
-    <input type="checkbox" name="removepunc" style="font-size: 26px;">Remove Punctuations</input><br>
-    <input type="checkbox" name="UPPERCASE" style="font-size: 26px;">UPPERCASE</input><br>
-    <input type="checkbox" name="new_line_remover" style="font-size: 26px;">New Line Remover</input><br>
-    <input type="checkbox" name="extra_space_remover" style="font-size: 26px;">Extra Space Remover</input><br>
-    <input type="checkbox" name="Character_Count" style="font-size: 26px;">Character Count</input><br>
-    <button type="SUBMIT">analyze text</button>
-    <br>
-    <!-- Radio buttons for selecting mode -->
-    <label><input type="radio" name="mode" value="light" checked>Light Mode</label>
-    <label><input type="radio" name="mode" value="dark">Dark Mode</label>
-    <br><br>
-</form>
-<script>
-    // JavaScript to toggle between light and dark mode
-    document.querySelectorAll('input[type="radio"][name="mode"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            document.body.classList.toggle('light-mode', this.value === 'light');
-            document.body.classList.toggle('dark-mode', this.value === 'dark');
-        });
-    });
-</script>
-</body>
+</nav>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Hello User  !   </strong> Welcome to Text-Utilizer, Utilize your text with Us !!.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div><br>
+
+
+<div class="mb-3" style="text-align: center;">
+  <label for="exampleFormControlTextarea1" class="form-label" style="font-size:30px ;">Utilize your text here</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" placeholder="Enter OR Paste Your Text Here"></textarea>
+</div>
+
+  <div class="form-check form-switch" style="position: relative; left: 20px; top: 10px;">
+  <input class="form-check-input" name="removepunc" type="checkbox" id="flexSwitchCheckDefault1">
+  <label class="form-check-label" for="flexSwitchCheckDefault1">Remove Punctuations</label>
+</div>
+
+  <div class="form-check form-switch" style="position: relative; left: 20px; top: 10px;">
+  <input class="form-check-input" name="UPPERCASE" type="checkbox" id="flexSwitchCheckDefault2">
+  <label class="form-check-label" for="flexSwitchCheckDefault2">UPPERCASE</label>
+</div>
+
+  <div class="form-check form-switch" style="position: relative; left: 20px; top: 10px;">
+  <input class="form-check-input" name="new_line_remover" type="checkbox" id="flexSwitchCheckDefault3">
+  <label class="form-check-label" for="flexSwitchCheckDefault3">New Line Remover</label>
+</div>
+
+  <div class="form-check form-switch" style="position: relative; left: 20px; top: 10px;">
+  <input class="form-check-input" name="extra_space_remover" type="checkbox" id="flexSwitchCheckDefault4">
+  <label class="form-check-label" for="flexSwitchCheckDefault4">Extra Space Remover</label>
+</div>
+
+  <div class="form-check form-switch" style="position: relative; left: 20px; top: 10px;">
+  <input class="form-check-input" name="Character_Count" type="checkbox" id="flexSwitchCheckDefault5">
+  <label class="form-check-label" for="flexSwitchCheckDefault5">Character Count</label>
+</div>
+
+  <button type="button" class="btn btn-primary btn-lg" style="position: relative; left: 600px; top: 5px;">Analyze Text</button>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
 </html>
