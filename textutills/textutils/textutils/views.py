@@ -1,51 +1,67 @@
-# I created this file
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# let's learn to lying pipeline
+
 def index(request):
     return render(request, 'index.html')
+
+    # return HttpResponse("Home")
+
+
+def ex1(request):
+    sites = ['''<h1>For Entertainment  </h1> <a href="https://www.youtube.com/"> Youtube Videos</a> ''',
+             '''<h1>For Interaction  </h1> <a href="https://www.facebook.com/"> Facebook</a> ''',
+             '''<h1>For Insight  </h1> <a href="https://www.ted.com/talks"> Ted Talks</a> ''',
+             '''<h1>For Internship  </h1> <a href="https://www.internshala.com">Internship</a> ''']
+    return HttpResponse((sites))
+
 def analyze(request):
-    djtxt = request.GET.get('text', 'default')
-    removepunc = request.GET.get('removepunc', 'off')  # Default value is 'off' if checkbox not checked
-    UPPERCASE = request.GET.get('UPPERCASE', 'off')
-    new_line_remover = request.GET.get('new_line_remover', 'off')
-    extra_space_remover = request.GET.get('new_line_remover', 'off')
-    char_count = request.GET.get('char_count', 'off')
-    print(removepunc)
-    print(djtxt)
+    #Get the text
+    djtext = request.GET.get('text', 'default')
 
-    if(removepunc == 'on'):  # Check if checkbox is checked
-        punctuation_list = '''!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~'''
-        analyzer = ""
-        for char in djtxt:
-            if char not in punctuation_list:
-                analyzer = analyzer + char
-        params = {'purpose': 'Remove Punctuation', 'analyzed_txt': analyzer}
+    # Check checkbox values
+    removepunc = request.GET.get('removepunc', 'off')
+    fullcaps = request.GET.get('fullcaps', 'off')
+    newlineremover = request.GET.get('newlineremover', 'off')
+    extraspaceremover = request.GET.get('extraspaceremover', 'off')
 
-    elif(UPPERCASE == 'on'):
-        analyzer = ""
-        for char in djtxt:
-            analyzer = analyzer + char.upper()
-        params = {'purpose': 'UPPERCASE TEXT', 'analyzed_txt': analyzer}
+    #Check which checkbox is on
+    if removepunc == "on":
+        punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+        analyzed = ""
+        for char in djtext:
+            if char not in punctuations:
+                analyzed = analyzed + char
+        params = {'purpose':'Removed Punctuations', 'analyzed_text': analyzed}
+        return render(request, 'analyze.html', params)
 
-    elif(new_line_remover == 'on'):
-        analyzer = ""
-        for char in djtxt:
+    elif(fullcaps=="on"):
+        analyzed = ""
+        for char in djtext:
+            analyzed = analyzed + char.upper()
+
+        params = {'purpose': 'Changed to Uppercase', 'analyzed_text': analyzed}
+        # Analyze the text
+        return render(request, 'analyze.html', params)
+
+    elif(extraspaceremover=="on"):
+        analyzed = ""
+        for index, char in enumerate(djtext):
+            if not(djtext[index] == " " and djtext[index+1]==" "):
+                analyzed = analyzed + char
+
+        params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
+        # Analyze the text
+        return render(request, 'analyze.html', params)
+
+    elif (newlineremover == "on"):
+        analyzed = ""
+        for char in djtext:
             if char != "\n":
-                analyzer = analyzer + char
-        params = {'purpose':'new_line_remover', 'analyzed_txt': analyzer}
+                analyzed = analyzed + char
 
-    elif(extra_space_remover == 'on'):
-        analyzer = ""
-        for index,char in enumerate(djtxt):
-            if not (djtxt[index] == "" and djtxt[index+1] == ""):
-                analyzer = analyzer + char
-
-    elif (char_count == 'on'):
-        analyzer = str(len(djtxt))  # Calculate the length of the text
-        params = {'purpose': 'Character Count', 'analyzed_txt': analyzer}
-
+        params = {'purpose': 'Removed NewLines', 'analyzed_text': analyzed}
+        # Analyze the text
+        return render(request, 'analyze.html', params)
     else:
-        params = {'purpose': 'No Operation Selected','analyzed_txt': djtxt}
-
-    return render(request, 'analyze.html', params)
+        return HttpResponse("Error")
