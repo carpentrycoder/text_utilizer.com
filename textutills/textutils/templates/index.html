@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -50,7 +48,7 @@
 
 <div class="container">
 
-  <form action='/analyze' method='get'>
+  <form action='/analyze' method='post'> {% csrf_token %}
     <br>
   <div class="form-group">
     <label for="exampleFormControlTextarea1" style="font-size: 20px;">Enter your text here and let Text Utils do the magic</label>
