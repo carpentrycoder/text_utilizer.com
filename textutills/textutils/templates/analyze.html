@@ -50,8 +50,17 @@
 <div class="container">
 
 <h1>Your Analyzed Text - {{ purpose }}</h1>
+  <br>
 <p>
-  <pre>{{ analyzed_text }}</pre>
+  <style>
+    pre {
+        font-size: 30px; /* Adjust the font size as needed */
+        width: 100%; /* Adjust the width as needed */
+        height: 200px; /* Adjust the height as needed */
+    }
+</style>
+
+<pre>This is Your Text : {{ analyzed_text }}</pre>
 
 </p>
 </div>
